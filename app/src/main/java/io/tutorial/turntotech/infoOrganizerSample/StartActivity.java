@@ -1,5 +1,8 @@
 package io.tutorial.turntotech.infoOrganizerSample;
-
+/*
+started 08/30/2017
+new line added
+ */
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;

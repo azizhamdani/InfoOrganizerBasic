@@ -26,10 +26,13 @@ import java.util.List;
 public class CompanyFragment extends Fragment {
 
     private RecyclerView recycler_view;
-    private ArrayList<String> listOfComany;
+    //private ArrayList<String> listOfComany;
     private  VerticalAdapter recyclerAdapter;
     ImageButton addButton;
     ImageButton backButton;
+
+    //--------
+    private ArrayList<Company> companies;
 
 
     @Nullable
@@ -44,13 +47,24 @@ public class CompanyFragment extends Fragment {
         recycler_view= (RecyclerView) view.findViewById(R.id.vertical_recycler_view);
 
 
-        listOfComany=new ArrayList<String>();
-        listOfComany.add("Apple");
-        listOfComany.add("Samsung");
-        listOfComany.add("Motorola");
-        listOfComany.add("Microsoft");
+        //listOfComany=new ArrayList<String>();
+        companies = new ArrayList<Company>();
+        /*
+        Company1 = title, detail price;
 
-        recyclerAdapter=new VerticalAdapter(listOfComany);
+
+         */
+        companies.add(new Company("Apple", "apple company", 1000));
+        companies.add(new Company("Samsung", "Samsung company", 1000));
+        companies.add(new Company("Motorola", "Motorola company", 1000));
+        companies.add(new Company("Microsoft", "Microsoft company", 1000));
+        //listOfComany.add("Apple");
+        //listOfComany.add("Samsung");
+        //listOfComany.add("Motorola");
+        //listOfComany.add("Microsoft");
+
+        //recyclerAdapter=new VerticalAdapter(listOfComany);
+        recyclerAdapter=new VerticalAdapter(companies);
 
 
         LinearLayoutManager layoutmanager
@@ -64,7 +78,8 @@ public class CompanyFragment extends Fragment {
         recycler_view.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), recycler_view ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        Toast.makeText(getContext(),listOfComany.get(position),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),listOfCompany.get(position),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),companies.get(position).getCompany_name(),Toast.LENGTH_SHORT).show();
 
 
                         ((StartActivity) getActivity()).setCurrentCompanyNo(position);
@@ -113,21 +128,31 @@ public class CompanyFragment extends Fragment {
 
     public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyViewHolder> {
 
-        private List<String> verticalList;
+        private List<Company> companyList;
+        // private List<String verticalList;
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             public TextView txtView;
+            //-------------
+            public TextView textView2;
 
             public MyViewHolder(View view) {
                 super(view);
                 txtView = (TextView) view.findViewById(R.id.txtView);
+                //-----------
+                textView2 = (TextView) view.findViewById(R.id.textView2);
 
             }
         }
 
 
+        /*
         public VerticalAdapter(List<String> verticalList) {
             this.verticalList = verticalList;
+        }
+        */
+        public VerticalAdapter(List<Company> verticalList) {
+            this.companyList = verticalList;
         }
 
         @Override
@@ -141,7 +166,9 @@ public class CompanyFragment extends Fragment {
         @Override
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-            holder.txtView.setText(verticalList.get(position));
+            //holder.txtView.setText(verticalList.get(position));
+            holder.txtView.setText(companyList.get(position).getCompany_name());
+            holder.textView2.setText(companyList.get(position).getLogoURL());
             // If you want to access separate part of it
 
             holder.txtView.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +182,7 @@ public class CompanyFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return verticalList.size();
+            return companyList.size();
         }
     }
 }

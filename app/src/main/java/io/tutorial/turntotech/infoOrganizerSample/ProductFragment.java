@@ -76,8 +76,7 @@ public class ProductFragment extends Fragment {
         recyclerProductAdapter = new VerticalProductAdapter(listOfAllProducts.get(companyNo));
 
 
-        LinearLayoutManager layoutmanager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         product_recycler_view.setLayoutManager(layoutmanager);
 
 

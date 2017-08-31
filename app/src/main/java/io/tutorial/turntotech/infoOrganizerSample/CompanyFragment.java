@@ -36,8 +36,7 @@ public class CompanyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(
-                R.layout.activity_main, container, false);
+        View view = inflater.inflate(R.layout.activity_main, container, false);
 
 
 
@@ -53,8 +52,7 @@ public class CompanyFragment extends Fragment {
         recyclerAdapter=new VerticalAdapter(listOfComany);
 
 
-        LinearLayoutManager layoutmanager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recycler_view.setLayoutManager(layoutmanager);
 
 
@@ -121,6 +119,8 @@ public class CompanyFragment extends Fragment {
             public MyViewHolder(View view) {
                 super(view);
                 txtView = (TextView) view.findViewById(R.id.txtView);
+                //
+                //
 
             }
         }
@@ -144,13 +144,6 @@ public class CompanyFragment extends Fragment {
             holder.txtView.setText(verticalList.get(position));
             // If you want to access separate part of it
 
-            holder.txtView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Toast.makeText(getContext(),holder.txtView.getText().toString(),Toast.LENGTH_SHORT).show();
-                }
-            });
         }
 
         @Override

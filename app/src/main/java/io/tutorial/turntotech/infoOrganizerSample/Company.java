@@ -24,12 +24,15 @@ public class Company {
         productArrayList = new ArrayList<>();
     }
 
+
+
     public Company() {
         this.id = 0;
         this.company_name = "";
         this.logoURL = "";
         this.stock_ticker = "";
         this.stock_price = 0.0;
+        productArrayList = new ArrayList<>();
     }
 
     public Company(String company_name, String logoURL,  double stock_price) {
@@ -38,21 +41,40 @@ public class Company {
         this.logoURL = logoURL;
         this.stock_ticker = "";
         this.stock_price = stock_price;
+        productArrayList = new ArrayList<>();
     }
 
+    // -------------- add a product -----------------
+    public void addProduct( Product product){
+        productArrayList.add(product);
+    }
 
+    // -----------get product List of company ---------
+    public ArrayList<Product> getProductList(){
+        if(productArrayList.isEmpty()){
+            return null;
+        }
+        else{
+            return productArrayList;
+        }
+
+    }
+
+    //------------ get ID -----------------------
     public int getId() {
         return id;
     }
-
+    // ----------- set ID -----------------------
     public void setId(int id) {
         this.id = id;
     }
 
+    // -------------- get Company Name ------------
     public String getCompany_name() {
         return company_name;
     }
 
+    // --------------- set Company name -------------
     public void setCompany_name(String company_name) {
         this.company_name = company_name;
     }

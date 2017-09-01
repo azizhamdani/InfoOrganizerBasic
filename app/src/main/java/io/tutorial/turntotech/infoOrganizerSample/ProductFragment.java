@@ -19,10 +19,13 @@ import java.util.List;
 
 public class ProductFragment extends Fragment {
 
+    // RecyvlerView
     private RecyclerView product_recycler_view;
-    private ArrayList<String> appleProducts,samsungProducts,motorolaProducts,microsoftProducts;
     private ProductFragment.VerticalProductAdapter recyclerProductAdapter;
-    List<List<String>> listOfAllProducts;
+    // list of individual products AND list of All products
+
+    //private ArrayList<String> appleProducts,samsungProducts,motorolaProducts,microsoftProducts;
+    //List<List<String>> listOfAllProducts;
     ImageButton addButton;
     ImageButton backButton;
 
@@ -33,56 +36,52 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(
-                R.layout.activity_main2, container, false);
+        View view = inflater.inflate(R.layout.activity_main2, container, false);
 
         product_recycler_view= (RecyclerView) view.findViewById(R.id.vertical_recycler_view);
 
         // Get the Company to display correct Products
         int companyNo = ((StartActivity) getActivity()).getCurrentCompanyNo();
 
-        listOfAllProducts = new ArrayList<List<String>>();
+        //listOfAllProducts = new ArrayList<List<String>>();
 
-        // apple Products
-        appleProducts=new ArrayList<String>();
-        appleProducts.add("Iphone");
-        appleProducts.add("IPad");
-        appleProducts.add("IPod");
-
-        // Samsung Products
-        samsungProducts =new ArrayList<String>();
-        samsungProducts.add("Galaxy s");
-        samsungProducts.add("Galaxy Note");
-        samsungProducts.add("J7");
-
-        // Moto Products
-        motorolaProducts=new ArrayList<String>();
-        motorolaProducts.add("Moto E");
-        motorolaProducts.add("Moto G");
-        motorolaProducts.add("Moto X");
-
-        // Microsoft Products
-        microsoftProducts=new ArrayList<String>();
-        microsoftProducts.add("Lumia 540");
-        microsoftProducts.add("Lumia 640");
-        microsoftProducts.add("Lumia 925");
+//        // apple Products
+//        appleProducts=new ArrayList<String>();
+//        appleProducts.add("Iphone");
+//        appleProducts.add("IPad");
+//        appleProducts.add("IPod");
+//
+//        // Samsung Products
+//        samsungProducts =new ArrayList<String>();
+//        samsungProducts.add("Galaxy s");
+//        samsungProducts.add("Galaxy Note");
+//        samsungProducts.add("J7");
+//
+//        // Moto Products
+//        motorolaProducts=new ArrayList<String>();
+//        motorolaProducts.add("Moto E");
+//        motorolaProducts.add("Moto G");
+//        motorolaProducts.add("Moto X");
+//
+//        // Microsoft Products
+//        microsoftProducts=new ArrayList<String>();
+//        microsoftProducts.add("Lumia 540");
+//        microsoftProducts.add("Lumia 640");
+//        microsoftProducts.add("Lumia 925");
 
         // add all products to the main list
-        listOfAllProducts.add(appleProducts);
-        listOfAllProducts.add(samsungProducts);
-        listOfAllProducts.add(motorolaProducts);
-        listOfAllProducts.add(microsoftProducts);
+        //listOfAllProducts.add(appleProducts);
+        //listOfAllProducts.add(samsungProducts);
+        //listOfAllProducts.add(motorolaProducts);
+        //listOfAllProducts.add(microsoftProducts);
 
-        recyclerProductAdapter = new VerticalProductAdapter(listOfAllProducts.get(companyNo));
+        //recyclerProductAdapter = new VerticalProductAdapter(listOfAllProducts.get(companyNo));
+        recyclerProductAdapter = new VerticalProductAdapter(DAO.getInstance().getDAOProductList(companyNo));
 
-
-        LinearLayoutManager layoutmanager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         product_recycler_view.setLayoutManager(layoutmanager);
 
-
         product_recycler_view.setAdapter(recyclerProductAdapter);
-
 
         // ActionBar SetUp
         AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -105,16 +104,13 @@ public class ProductFragment extends Fragment {
                 Toast.makeText(getContext(),"Add",Toast.LENGTH_LONG).show();
             }
         });
-
-
-
-
         return view;
     }
 
     public class VerticalProductAdapter extends RecyclerView.Adapter<ProductFragment.VerticalProductAdapter.MyViewHolder> {
 
-        private List<String> verticalList;
+        //private List<String> verticalList;
+        private ArrayList<Product> verticalList;
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             public TextView textProductName;
@@ -122,12 +118,11 @@ public class ProductFragment extends Fragment {
             public MyViewHolder(View view) {
                 super(view);
                 textProductName = (TextView) view.findViewById(R.id.textProductName);
-
             }
         }
 
 
-        public VerticalProductAdapter(List<String> verticalList) {
+        public VerticalProductAdapter(ArrayList<Product> verticalList) {
             this.verticalList = verticalList;
         }
 
@@ -141,7 +136,7 @@ public class ProductFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
-            holder.textProductName.setText(verticalList.get(position));
+            holder.textProductName.setText(verticalList.get(position).getProduct_name());
             holder.textProductName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

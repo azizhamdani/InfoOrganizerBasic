@@ -32,7 +32,8 @@ public class CompanyFragment extends Fragment {
     ImageButton backButton;
 
     //--------
-    private ArrayList<Company> companies;
+    //private ArrayList<Company> companies;
+    //private DAO dao;
 
 
     @Nullable
@@ -42,36 +43,29 @@ public class CompanyFragment extends Fragment {
         View view = inflater.inflate(
                 R.layout.activity_main, container, false);
 
-
-
         recycler_view= (RecyclerView) view.findViewById(R.id.vertical_recycler_view);
 
-
         //listOfComany=new ArrayList<String>();
-        companies = new ArrayList<Company>();
+        //companies = new ArrayList<Company>();
+        //dao = new DAO();
+
         /*
-        Company1 = title, detail price;
-
-
-         */
         companies.add(new Company("Apple", "apple company", 1000));
         companies.add(new Company("Samsung", "Samsung company", 1000));
         companies.add(new Company("Motorola", "Motorola company", 1000));
         companies.add(new Company("Microsoft", "Microsoft company", 1000));
-        //listOfComany.add("Apple");
-        //listOfComany.add("Samsung");
-        //listOfComany.add("Motorola");
-        //listOfComany.add("Microsoft");
 
+        listOfComany.add("Apple");
+        listOfComany.add("Samsung");
+        listOfComany.add("Motorola");
+        listOfComany.add("Microsoft");
+        */
         //recyclerAdapter=new VerticalAdapter(listOfComany);
-        recyclerAdapter=new VerticalAdapter(companies);
-
+        recyclerAdapter=new VerticalAdapter(DAO.getInstance().getCompanies());
 
         LinearLayoutManager layoutmanager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recycler_view.setLayoutManager(layoutmanager);
-
-
 
         recycler_view.setAdapter(recyclerAdapter);
 
@@ -79,7 +73,9 @@ public class CompanyFragment extends Fragment {
                 new RecyclerItemClickListener(getContext(), recycler_view ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         //Toast.makeText(getContext(),listOfCompany.get(position),Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(),companies.get(position).getCompany_name(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),
+                                DAO.getInstance().getDAOCompany(position).getCompany_name(),
+                                Toast.LENGTH_SHORT).show();
 
 
                         ((StartActivity) getActivity()).setCurrentCompanyNo(position);

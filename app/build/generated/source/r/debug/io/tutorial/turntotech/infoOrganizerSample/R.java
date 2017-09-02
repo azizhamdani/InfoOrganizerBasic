@@ -2380,7 +2380,7 @@ containing a value of this type.
         public static final int imageButton2=0x7f0b007b;
         public static final int imageView=0x7f0b007c;
         public static final int imageView2=0x7f0b007f;
-        public static final int imageView6=0x7f0b0081;
+        public static final int imageView6=0x7f0b0082;
         public static final int info=0x7f0b006f;
         public static final int item_touch_helper_previous_elevation=0x7f0b0005;
         public static final int line1=0x7f0b0074;
@@ -2401,6 +2401,7 @@ containing a value of this type.
         public static final int packed=0x7f0b000d;
         public static final int parent=0x7f0b000a;
         public static final int parentPanel=0x7f0b0039;
+        public static final int product_img=0x7f0b0080;
         public static final int progress_circular=0x7f0b0006;
         public static final int progress_horizontal=0x7f0b0007;
         public static final int radio=0x7f0b0049;
@@ -2438,7 +2439,7 @@ containing a value of this type.
         public static final int tabMode=0x7f0b0015;
         public static final int text=0x7f0b0077;
         public static final int text2=0x7f0b0075;
-        public static final int textProductName=0x7f0b0080;
+        public static final int textProductName=0x7f0b0081;
         public static final int textSpacerNoButtons=0x7f0b003e;
         public static final int textSpacerNoTitle=0x7f0b003d;
         public static final int textView2=0x7f0b007e;

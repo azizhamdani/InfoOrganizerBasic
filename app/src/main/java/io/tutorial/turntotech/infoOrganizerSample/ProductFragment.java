@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,10 +117,13 @@ public class ProductFragment extends Fragment {
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
             public TextView textProductName;
+            public ImageView productImage;
 
             public MyViewHolder(View view) {
                 super(view);
                 textProductName = (TextView) view.findViewById(R.id.textProductName);
+                productImage = (ImageView) view.findViewById(R.id.product_img);
+
             }
         }
 
@@ -137,6 +143,7 @@ public class ProductFragment extends Fragment {
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
             holder.textProductName.setText(verticalList.get(position).getProduct_name());
+            Picasso.with(holder.productImage.getContext()).load(verticalList.get(position).getLogo_URL()).into(holder.productImage);
             holder.textProductName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

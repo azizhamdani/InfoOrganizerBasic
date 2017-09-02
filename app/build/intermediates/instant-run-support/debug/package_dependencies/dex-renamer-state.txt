@@ -1,4 +1,4 @@
-#Wed Aug 30 11:03:24 EDT 2017
+#Sat Sep 02 16:09:53 EDT 2017
 file.2=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_a10bfd590fc6aad63e5ac215ee0e0ac13f111960\\classes.dex
 base.2=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_a10bfd590fc6aad63e5ac215ee0e0ac13f111960
 file.1=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_4b52fbe39da3e75684a715795ce7a015719a8953\\classes.dex
@@ -14,15 +14,18 @@ renamed.4=classes.dex
 renamed.3=classes2.dex
 renamed.2=classes9.dex
 renamed.1=classes4.dex
-renamed.0=classes13.dex
-renamed.12=classes10.dex
-renamed.11=classes12.dex
+renamed.0=classes14.dex
+renamed.13=classes10.dex
+renamed.12=classes12.dex
+renamed.11=classes13.dex
 renamed.10=classes11.dex
-base.12=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_af3f9d01ac7594b15014d99f9cfac1750efd2587
-base.11=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\constraint-layout-solver-1.0.1_0b923d069f173f426ce322162114ea7df42dc792
+base.13=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_af3f9d01ac7594b15014d99f9cfac1750efd2587
+base.12=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\constraint-layout-solver-1.0.1_0b923d069f173f426ce322162114ea7df42dc792
+base.11=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\picasso-2.5.2_7b934afcedf333c94eaa0b3f0468f5e0c64af94c
 base.10=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_c020a3c8fe514a43f614b32391b47f8fb8ad6b33
-file.12=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_af3f9d01ac7594b15014d99f9cfac1750efd2587\\classes.dex
-file.11=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\constraint-layout-solver-1.0.1_0b923d069f173f426ce322162114ea7df42dc792\\classes.dex
+file.13=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_af3f9d01ac7594b15014d99f9cfac1750efd2587\\classes.dex
+file.12=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\constraint-layout-solver-1.0.1_0b923d069f173f426ce322162114ea7df42dc792\\classes.dex
+file.11=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\picasso-2.5.2_7b934afcedf333c94eaa0b3f0468f5e0c64af94c\\classes.dex
 file.10=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_c020a3c8fe514a43f614b32391b47f8fb8ad6b33\\classes.dex
 file.9=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_4c52640a573ebbfc4a9067d41a5b2f28f8c66a80\\classes.dex
 base.9=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_4c52640a573ebbfc4a9067d41a5b2f28f8c66a80

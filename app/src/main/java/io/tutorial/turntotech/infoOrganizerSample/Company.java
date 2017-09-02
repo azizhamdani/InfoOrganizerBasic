@@ -44,6 +44,15 @@ public class Company {
         productArrayList = new ArrayList<>();
     }
 
+    public Company(String company_name, String logoURL, String stock_ticker, double stock_price) {
+        this.id = 0;
+        this.company_name = company_name;
+        this.logoURL = logoURL;
+        this.stock_ticker = stock_ticker;
+        this.stock_price = stock_price;
+        productArrayList = new ArrayList<>();
+    }
+
     // -------------- add a product -----------------
     public void addProduct( Product product){
         productArrayList.add(product);

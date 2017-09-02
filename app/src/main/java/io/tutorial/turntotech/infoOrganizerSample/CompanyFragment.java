@@ -13,11 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static io.tutorial.turntotech.infoOrganizerSample.R.id.imageView;
 
 
 /**
@@ -131,12 +136,14 @@ public class CompanyFragment extends Fragment {
             public TextView txtView;
             //-------------
             public TextView textView2;
+            public ImageView imageView;
 
             public MyViewHolder(View view) {
                 super(view);
                 txtView = (TextView) view.findViewById(R.id.txtView);
                 //-----------
                 textView2 = (TextView) view.findViewById(R.id.textView2);
+                imageView = (ImageView) view.findViewById(R.id.imageView);
 
             }
         }
@@ -164,7 +171,8 @@ public class CompanyFragment extends Fragment {
 
             //holder.txtView.setText(verticalList.get(position));
             holder.txtView.setText(companyList.get(position).getCompany_name());
-            holder.textView2.setText(companyList.get(position).getLogoURL());
+            holder.textView2.setText(companyList.get(position).getStock_ticker());
+            Picasso.with(holder.imageView.getContext()).load(companyList.get(position).getLogoURL()).into(holder.imageView);
             // If you want to access separate part of it
 
             holder.txtView.setOnClickListener(new View.OnClickListener() {

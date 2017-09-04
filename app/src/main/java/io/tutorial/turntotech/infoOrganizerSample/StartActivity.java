@@ -13,13 +13,15 @@ import android.os.Bundle;
 public class StartActivity extends AppCompatActivity {
 
     static int companyNo;
+    // added to keep track of the clicked product
+    static int productNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         companyNo = 0;
-
+        productNo = 0;
         FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.mainLayout, new CompanyFragment()).commit();
@@ -33,5 +35,14 @@ public class StartActivity extends AppCompatActivity {
     public void setCurrentCompanyNo(int pos)
     {
         companyNo = pos;
+    }
+    public int getCurrentProductNo()
+    {
+        return productNo;
+    }
+
+    public void setCurrentProductNo(int pos)
+    {
+        productNo = pos;
     }
 }

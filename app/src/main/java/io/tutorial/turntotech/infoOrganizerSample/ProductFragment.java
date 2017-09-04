@@ -3,6 +3,8 @@ package io.tutorial.turntotech.infoOrganizerSample;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static io.tutorial.turntotech.infoOrganizerSample.CompanyFragment.dao;
 
 public class ProductFragment extends Fragment {
 
@@ -79,12 +83,40 @@ public class ProductFragment extends Fragment {
         //listOfAllProducts.add(microsoftProducts);
 
         //recyclerProductAdapter = new VerticalProductAdapter(listOfAllProducts.get(companyNo));
-        recyclerProductAdapter = new VerticalProductAdapter(DAO.getInstance().getDAOProductList(companyNo));
+        recyclerProductAdapter = new VerticalProductAdapter(dao.getDAOProductList(companyNo));
 
         LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         product_recycler_view.setLayoutManager(layoutmanager);
 
         product_recycler_view.setAdapter(recyclerProductAdapter);
+        product_recycler_view.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), product_recycler_view ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        //Toast.makeText(getContext(),listOfCompany.get(position),Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), DAO.getInstance().getDAOCompany(position).getCompany_name(),
+//                                Toast.LENGTH_SHORT).show();
+
+
+                        // set the current product position
+                        ((StartActivity) getActivity()).setCurrentProductNo(position);
+
+                        // Go to Child not Found Screen
+                        Fragment webFragment = new WebFragment();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.mainLayout, webFragment);
+                        fragmentTransaction.addToBackStack(null);
+
+                        // Commit the transaction
+                        fragmentTransaction.commit();
+
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do what you want
+                    }
+                })
+        );
 
         // ActionBar SetUp
         AppCompatActivity activity = (AppCompatActivity) getActivity();

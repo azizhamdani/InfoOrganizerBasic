@@ -35,6 +35,7 @@ public class CompanyFragment extends Fragment {
     private  VerticalAdapter recyclerAdapter;
     ImageButton addButton;
     ImageButton backButton;
+    public static DAO dao = DAO.getInstance();   // is this ok to make this public?????
 
     //--------
     //private ArrayList<Company> companies;
@@ -66,7 +67,8 @@ public class CompanyFragment extends Fragment {
         listOfComany.add("Microsoft");
         */
         //recyclerAdapter=new VerticalAdapter(listOfComany);
-        recyclerAdapter=new VerticalAdapter(DAO.getInstance().getCompanies());
+        //recyclerAdapter=new VerticalAdapter(DAO.getInstance().getCompanies());
+        recyclerAdapter=new VerticalAdapter(dao.getCompanies());
 
         LinearLayoutManager layoutmanager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -79,7 +81,7 @@ public class CompanyFragment extends Fragment {
                     @Override public void onItemClick(View view, int position) {
                         //Toast.makeText(getContext(),listOfCompany.get(position),Toast.LENGTH_SHORT).show();
                         Toast.makeText(getContext(),
-                                DAO.getInstance().getDAOCompany(position).getCompany_name(),
+                                dao.getDAOCompany(position).getCompany_name(),
                                 Toast.LENGTH_SHORT).show();
 
 
@@ -97,8 +99,13 @@ public class CompanyFragment extends Fragment {
 
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override
+                    public void onLongItemClick(View view, int position) {
                         // do what you want
+//                        Toast.makeText(getContext(), "Long press on position :"+dao.getCompanies().size(),
+//                                Toast.LENGTH_LONG).show();
+                        recyclerAdapter.removeAt(position);
+
                     }
                 })
         );
@@ -179,9 +186,19 @@ public class CompanyFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    Toast.makeText(getContext(),holder.txtView.getText().toString(),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),holder.txtView.getText().toString(),Toast.LENGTH_SHORT).show();
                 }
+
             });
+        }
+
+        //removes the row
+        public void removeAt(int position) {
+            if(!companyList.isEmpty()) {
+                companyList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, companyList.size());
+            }
         }
 
         @Override

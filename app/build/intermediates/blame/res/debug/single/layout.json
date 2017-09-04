@@ -56,6 +56,10 @@
         "source": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\src\\main\\res\\layout\\activity_start.xml"
     },
     {
+        "merged": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_web.xml",
+        "source": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\src\\main\\res\\layout\\fragment_web.xml"
+    },
+    {
         "merged": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_title_material.xml",
         "source": "C:\\Users\\Webster\\.android\\build-cache\\ed3d55ba9b529a724c42058c966d2f4abc6387cf\\output\\res\\layout\\abc_alert_dialog_title_material.xml"
     },

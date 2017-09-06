@@ -1,5 +1,8 @@
 package io.tutorial.turntotech.infoOrganizerSample;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,35 +17,41 @@ public class DAO {
 
 
 
-    public static DAO getInstance(){
+    public static DAO getInstance(Context context){
+        // I made a mistake here
         if (instance == null){
-            return new DAO();
+            instance =  new DAO(context); // I did not assign DAP to isntance.
+            // this problem caused DAO to be created again and again.
+            // fixed it this way or call DAO once in the StartActivity
+            return instance;
         }
         else
             return instance;
     }
+    private DAO (Context context) {
 
-    private DAO () {
+        // 1- Ticker is what entered and price is what should be shown.
+
         companies = new ArrayList<Company>();
         companies.add(new Company("Apple",
                 "http://pngimg.com/uploads/apple_logo/apple_logo_PNG19664.png?i=1",
-                "apple company", 1000));
+                "AAPL"));
         companies.add(new Company("Samsung",
                 "http://pngimg.com/uploads/samsung_logo/samsung_logo_PNG5.png",
-                "Samsung company", 1000));
+                "Samsungcompany"));
         companies.add(new Company("Motorola",
                 "https://seeklogo.com/images/M/Motorola-logo-C3DDCBA822-seeklogo.com.png",
-                "Motorola company", 1000));
+                "Motorolacompany"));
         companies.add(new Company("Microsoft",
                 "http://www.pngmart.com/files/4/Microsoft-Logo-PNG-HD.png",
-                "Microsoft company", 1000));
+                "MSFT"));
         // added companies for assignment 3
         companies.add(new Company("Nokia",
                 "https://www.seeklogo.net/wp-content/uploads/2015/03/nokia-logo.png",
-                "Nokia company", 1000));
+                "Nokiacompany"));
         companies.add(new Company("Blackberry",
                 "https://www.strategicmanagementinsight.com/img/company-logos/blackberry.png",
-                "Blackberry company", 1000));
+                "Blackberrycompany"));
 
         // apple Products
         companies.get(0).addProduct(new Product("Iphone", "https://www.apple.com/iphone-7/",
@@ -106,6 +115,8 @@ public class DAO {
         companies.get(5).addProduct(new Product("Blackberry Z30",
                 "https://crackberry.com/blackberry-z30",
                 "http://www.telus.com/common/images/devices/large/blackberry-z30.png"));
+
+
     }
 
     //(((((((((((((((((( Product class  ))))))))))))))))))))
@@ -174,10 +185,6 @@ public class DAO {
         return true;
 
     }
-
-
-
-
 
 
 }

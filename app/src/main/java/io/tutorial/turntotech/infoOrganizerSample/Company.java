@@ -12,10 +12,10 @@ public class Company {
     private String company_name;
     private String logoURL;
     private String stock_ticker;
-    private double stock_price;
+    private String stock_price;
     private ArrayList<Product> productArrayList;
 
-    public Company(int id, String company_name, String logoURL, String stock_ticker, double stock_price) {
+    public Company(int id, String company_name, String logoURL, String stock_ticker, String stock_price) {
         this.id = id;
         this.company_name = company_name;
         this.logoURL = logoURL;
@@ -26,25 +26,17 @@ public class Company {
 
 
 
-    public Company() {
-        this.id = 0;
-        this.company_name = "";
-        this.logoURL = "";
-        this.stock_ticker = "";
-        this.stock_price = 0.0;
-        productArrayList = new ArrayList<>();
-    }
-
-    public Company(String company_name, String logoURL,  double stock_price) {
+    public Company(String company_name, String logoURL, String stock_ticker) {
         this.id = 0;
         this.company_name = company_name;
         this.logoURL = logoURL;
-        this.stock_ticker = "";
-        this.stock_price = stock_price;
+        this.stock_ticker = stock_ticker;
+        this.stock_price = "N/A";
         productArrayList = new ArrayList<>();
     }
 
-    public Company(String company_name, String logoURL, String stock_ticker, double stock_price) {
+
+    public Company(String company_name, String logoURL, String stock_ticker, String stock_price) {
         this.id = 0;
         this.company_name = company_name;
         this.logoURL = logoURL;
@@ -104,11 +96,11 @@ public class Company {
         this.stock_ticker = stock_ticker;
     }
 
-    public double getStock_price() {
+    public String getStock_price() {
         return stock_price;
     }
 
-    public void setStock_price(double stock_price) {
+    public void setStock_price(String stock_price) {
         this.stock_price = stock_price;
     }
 }

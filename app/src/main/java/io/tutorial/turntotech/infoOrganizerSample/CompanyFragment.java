@@ -1,10 +1,13 @@
 package io.tutorial.turntotech.infoOrganizerSample;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,34 +25,51 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.tutorial.turntotech.infoOrganizerSample.R.id.imageView;
+import static io.tutorial.turntotech.infoOrganizerSample.StartActivity.dao;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CompanyFragment extends Fragment {
+public class CompanyFragment extends Fragment implements CallBack {
 
     private RecyclerView recycler_view;
     //private ArrayList<String> listOfComany;
     private  VerticalAdapter recyclerAdapter;
     ImageButton addButton;
     ImageButton backButton;
-    public static DAO dao = DAO.getInstance();   // is this ok to make this public?????
+   // public static DAO dao;   // is this ok to make this public?????
+
+    String csv = "";
+    // This is for the Network calls
+    NetworkManager networkManager;
 
     //--------
     //private ArrayList<Company> companies;
     //private DAO dao;
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(
-                R.layout.activity_main, container, false);
+        View view = inflater.inflate(R.layout.activity_main, container, false);
+
 
         recycler_view= (RecyclerView) view.findViewById(R.id.vertical_recycler_view);
+
+        networkManager = NetworkManager.getSharedInstance();
+        // create the URL
+        // check if Array List is null
+        String url = getURL();
+
+        Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
+        networkManager.downloadData(getContext(),
+                "https://download.finance.yahoo.com/d/quotes.csv?s="+(url)+"&f=nl1",this);
+        assignTickers(csv);
+
+        //https://download.finance.yahoo.com/d/quotes.csv?s=AAPL+GOOG+MSFT&f=nl1
 
         //listOfComany=new ArrayList<String>();
         //companies = new ArrayList<Company>();
@@ -76,6 +96,7 @@ public class CompanyFragment extends Fragment {
 
         recycler_view.setAdapter(recyclerAdapter);
 
+
         recycler_view.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), recycler_view ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
@@ -100,11 +121,39 @@ public class CompanyFragment extends Fragment {
                     }
 
                     @Override
-                    public void onLongItemClick(View view, int position) {
+                    public void onLongItemClick(View view, final int position) {
                         // do what you want
 //                        Toast.makeText(getContext(), "Long press on position :"+dao.getCompanies().size(),
 //                                Toast.LENGTH_LONG).show();
-                        recyclerAdapter.removeAt(position);
+                        //recyclerAdapter.removeAt(position);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                        builder.setMessage("What do you want to do with this item?")
+                                .setCancelable(false)
+                                .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dao.removeCompany(position);
+                                        recyclerAdapter.notifyDataSetChanged();
+                                    }
+                                })
+                                .setNegativeButton("UPDATE", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                        ((StartActivity) getActivity()).setUpdate(true);
+                                        ((StartActivity) getActivity()).setCurrentCompanyNo(position);
+
+                                        // Go to Child not Found Screen
+                                        Fragment addCompany = new AddCompany();
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.mainLayout, addCompany);
+                                        fragmentTransaction.addToBackStack(null);
+                                        // Commit the transaction
+                                        fragmentTransaction.commit();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
 
                     }
                 })
@@ -125,13 +174,55 @@ public class CompanyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Add",Toast.LENGTH_LONG).show();
+                // Go to Child not Found Screen
+                Fragment addCompany = new AddCompany();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.mainLayout, addCompany);
+                fragmentTransaction.addToBackStack(null);
+                // Commit the transaction
+                fragmentTransaction.commit();
             }
         });
 
-
-
-
         return view;
+    }
+
+    public String getURL(){
+        String temp = "";
+        for(int i = 0; i < dao.getCompanies().size(); i++){
+            if(i < dao.getCompanies().size() - 1)
+                temp += dao.getCompanies().get(i).getStock_ticker() + "+";
+            else
+                temp += dao.getCompanies().get(i).getStock_ticker();
+        }
+        return temp;
+    }
+    @Override
+    public void update() {
+        String resultStr = "";
+        for (String str : networkManager.lines){
+            resultStr += "\n";
+            resultStr += str;
+        }
+        //csv = resultStr;
+        String [] lines = resultStr.split("\\n");
+        int arrSize = lines.length;
+        int listSize = dao.getCompanies().size();
+        if( arrSize > listSize){
+
+            for(int i = 1; i < arrSize; i++){
+                String[] temp_arr = lines[i].split(",");
+                String temp = temp_arr[1];
+                dao.getCompanies().get(i-1).setStock_price(temp);
+                recyclerAdapter.notifyDataSetChanged();
+            }
+        }
+        Toast.makeText(getContext(), resultStr, Toast.LENGTH_LONG).show();
+
+    }
+    public void assignTickers(String result){
+
     }
 
     public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.MyViewHolder> {
@@ -178,7 +269,8 @@ public class CompanyFragment extends Fragment {
 
             //holder.txtView.setText(verticalList.get(position));
             holder.txtView.setText(companyList.get(position).getCompany_name());
-            holder.textView2.setText(companyList.get(position).getStock_ticker());
+            holder.textView2.setText(companyList.get(position).getStock_price());
+            //holder.textView2.setText(companyList.get(position).getStock_ticker());
             Picasso.with(holder.imageView.getContext()).load(companyList.get(position).getLogoURL()).into(holder.imageView);
             // If you want to access separate part of it
 
@@ -191,7 +283,11 @@ public class CompanyFragment extends Fragment {
 
             });
         }
-
+        // add a row
+        public void insertAt(int position, Company company){
+            companyList.add(position, company);
+            notifyItemInserted(position);
+        }
         //removes the row
         public void removeAt(int position) {
             if(!companyList.isEmpty()) {
@@ -199,6 +295,10 @@ public class CompanyFragment extends Fragment {
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, companyList.size());
             }
+        }
+        public void insert(Company company){
+            companyList.add(company);
+            notifyDataSetChanged();
         }
 
         @Override

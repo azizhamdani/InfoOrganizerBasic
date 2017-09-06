@@ -29,6 +29,7 @@ MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Webster\.
 MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Webster\.android\build-cache\fee43a7e52e40156f285420f98ea173e80dd0336\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Webster\.android\build-cache\49280df5d1468159d7c9089e66fa7c78ebc1270e\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Webster\.android\build-cache\1c373d1d40bc2671ae3eff1efe0a9c130eb9ccbe\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.volley:volley:1.0.0] C:\Users\Webster\.android\build-cache\dc415aaf1a8a945d3425d9babc06987732002fee\output\AndroidManifest.xml:9:5-20
 	android:label
 		ADDED from C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\src\main\AndroidManifest.xml:10:9-43
 	android:supportsRtl
@@ -66,6 +67,7 @@ MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Webster\.
 MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Webster\.android\build-cache\fee43a7e52e40156f285420f98ea173e80dd0336\output\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Webster\.android\build-cache\49280df5d1468159d7c9089e66fa7c78ebc1270e\output\AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Webster\.android\build-cache\1c373d1d40bc2671ae3eff1efe0a9c130eb9ccbe\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.volley:volley:1.0.0] C:\Users\Webster\.android\build-cache\dc415aaf1a8a945d3425d9babc06987732002fee\output\AndroidManifest.xml:7:5-43
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Webster\.android\build-cache\ed3d55ba9b529a724c42058c966d2f4abc6387cf\output\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion

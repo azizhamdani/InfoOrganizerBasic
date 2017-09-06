@@ -22,7 +22,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.tutorial.turntotech.infoOrganizerSample.CompanyFragment.dao;
+import static io.tutorial.turntotech.infoOrganizerSample.StartActivity.dao;
+
 
 public class ProductFragment extends Fragment {
 
@@ -114,6 +115,8 @@ public class ProductFragment extends Fragment {
 
                     @Override public void onLongItemClick(View view, int position) {
                         // do what you want
+                        // remove
+                        //update
                     }
                 })
         );
@@ -130,6 +133,13 @@ public class ProductFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Back",Toast.LENGTH_LONG).show();
+                Fragment company = new CompanyFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.mainLayout, company);
+                fragmentTransaction.addToBackStack(null);
+                // Commit the transaction
+                fragmentTransaction.commit();
             }
         });
 
@@ -137,6 +147,15 @@ public class ProductFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Add",Toast.LENGTH_LONG).show();
+                // Go to Child not Found Screen
+                Fragment addProduct = new AddProduct();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.mainLayout, addProduct);
+                fragmentTransaction.addToBackStack(null);
+
+                // Commit the transaction
+                fragmentTransaction.commit();
             }
         });
         return view;

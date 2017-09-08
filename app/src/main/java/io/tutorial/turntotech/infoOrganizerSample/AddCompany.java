@@ -38,8 +38,9 @@ public class AddCompany extends Fragment {
 
         final boolean isUpdate = ((StartActivity) (getActivity())).getUpdateFlag();
         final int curCompany = ((StartActivity) (getActivity())).getCurrentCompanyNo();
-        Company temp_company = dao.getDAOCompany(curCompany);
+
         if(isUpdate == true) {
+            Company temp_company = dao.getDAOCompany(curCompany);
             name.setText((CharSequence) temp_company.getCompany_name());
             logo.setText((CharSequence) temp_company.getLogoURL());
             stock.setText((CharSequence) temp_company.getStock_ticker());

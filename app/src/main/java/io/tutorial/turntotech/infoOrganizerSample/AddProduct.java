@@ -39,8 +39,9 @@ public class AddProduct extends Fragment {
         final boolean isUpdate = ((StartActivity) (getActivity())).getUpdateFlag();
         final int curCompany = ((StartActivity) (getActivity())).getCurrentCompanyNo();
         final int curPro = ((StartActivity) getActivity()).getCurrentProductNo();
-        Product temp_pro = dao.getDAOProduct(curCompany, curPro);
+
         if(isUpdate == true) {
+            Product temp_pro = dao.getDAOProduct(curCompany, curPro);
             name.setText((CharSequence) temp_pro.getProduct_name());
             logo.setText((CharSequence) temp_pro.getLogo_URL());
             webPage.setText((CharSequence) temp_pro.getProduct_URL());

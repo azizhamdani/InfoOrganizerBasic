@@ -6,29 +6,22 @@
     density="xxhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1504896301763"
+    timestamp="1504902470370"
     token="1885008011508007225"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="441" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="91" />
+        duration="0" />
     <task
         name="verifier"
-        duration="48" />
-
-    <artifact
-        location="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\outputs\apk\app-debug.apk"
-        type="SPLIT_MAIN" />
+        duration="0" />
 
     <build
         build-mode="FULL"
@@ -73,15 +66,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1504896263623"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\outputs\apk\app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1504896301763"
+        timestamp="1504898108071"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
@@ -90,5 +75,9 @@
             location="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
+    <build
+        build-mode="COLD"
+        timestamp="1504902470370"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

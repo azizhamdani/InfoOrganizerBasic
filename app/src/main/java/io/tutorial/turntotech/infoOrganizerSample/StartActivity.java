@@ -18,7 +18,6 @@ public class StartActivity extends AppCompatActivity {
     static int companyNo;
     // added to keep track of the clicked product
     static int productNo;
-    static String companyName, companyLogo, companyStock;
     static boolean flag= false;
 
     @Override
@@ -28,9 +27,6 @@ public class StartActivity extends AppCompatActivity {
         dao = DAO.getInstance(getBaseContext());
         companyNo = 0;
         productNo = 0;
-        //companyLogo = "";
-        //companyName = "";
-        //companyStock = "";
         FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.mainLayout, new CompanyFragment()).commit();

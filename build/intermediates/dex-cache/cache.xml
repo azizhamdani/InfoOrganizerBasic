@@ -3,24 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Webster\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_7b934afcedf333c94eaa0b3f0468f5e0c64af94c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Webster\.android\build-cache\dc415aaf1a8a945d3425d9babc06987732002fee\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
-        <dex dex="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fabb0a96d32ee10c739119e195855f53764d6912\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -30,30 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Webster\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.1\constraint-layout-solver-1.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1ad79631209e77b0a2730fc112b4cc0c66a95132">
-        <dex dex="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.1_0b923d069f173f426ce322162114ea7df42dc792\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="4f90572a48400e41e5be3941dae745c139f990e4">
+        sha1="87bd46bd0f45fbf81140a7e2ca8407e0d036203d">
         <dex dex="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f004c9b7eae6ad860d99c59b4ff21e93ed564af2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Webster\.android\build-cache\e1f7ef6d28886f4fa2e613e08e85e0d862f31581\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7113302c965566b66df46c6ca75ea301576114a5">
-        <dex dex="C:\Users\Webster\AndroidStudioProjects\InfoOrganizerBasic\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4b52fbe39da3e75684a715795ce7a015719a8953\classes.dex" />
     </item>
 
 </items>

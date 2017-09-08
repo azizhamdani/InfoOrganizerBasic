@@ -1,4 +1,4 @@
-#Tue Sep 05 11:56:21 EDT 2017
+#Fri Sep 08 12:22:11 EDT 2017
 base.0=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_f004c9b7eae6ad860d99c59b4ff21e93ed564af2
 renamed.1=classes.dex
 renamed.0=classes2.dex

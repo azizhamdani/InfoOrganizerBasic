@@ -136,12 +136,12 @@
         "source": "C:\\Users\\Webster\\.android\\build-cache\\ed3d55ba9b529a724c42058c966d2f4abc6387cf\\output\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
-        "source": "C:\\Users\\Webster\\.android\\build-cache\\ed3d55ba9b529a724c42058c966d2f4abc6387cf\\output\\res\\layout\\abc_alert_dialog_material.xml"
-    },
-    {
         "merged": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_add_product.xml",
         "source": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\src\\main\\res\\layout\\fragment_add_product.xml"
+    },
+    {
+        "merged": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "C:\\Users\\Webster\\.android\\build-cache\\ed3d55ba9b529a724c42058c966d2f4abc6387cf\\output\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
         "merged": "C:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",

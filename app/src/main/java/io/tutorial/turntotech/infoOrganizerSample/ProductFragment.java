@@ -1,11 +1,13 @@
 package io.tutorial.turntotech.infoOrganizerSample;
 
+import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -113,10 +115,44 @@ public class ProductFragment extends Fragment {
 
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override public void onLongItemClick(View view, final int position) {
                         // do what you want
-                        // remove
-                        //update
+//                        Toast.makeText(getContext(), "Long press on position :"+dao.getCompanies().size(),
+//                                Toast.LENGTH_LONG).show();
+                        //recyclerAdapter.removeAt(position);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                        builder.setMessage("What do you want to do with this product?")
+                                .setCancelable(false)
+                                .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        int current_com = ((StartActivity) getActivity()).getCurrentCompanyNo();
+                                        Product productToRemove = dao.getDAOProduct(current_com, position);  // get the product
+                                        dao.removeProduct(productToRemove);
+                                        recyclerProductAdapter.removeAt(position);
+                                        recyclerProductAdapter.notifyDataSetChanged();
+                                    }
+                                })
+                                .setNegativeButton("UPDATE", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                        ((StartActivity) getActivity()).setUpdate(true);
+                                        // set the current product position
+                                        //Toast.makeText(getContext(), "current pro pos: " + position, Toast.LENGTH_LONG ).show();
+                                        ((StartActivity) getActivity()).setCurrentProductNo(position);
+                                        //((StartActivity) getActivity()).setCurrentCompanyNo(position);
+
+                                        // Go to Child not Found Screen
+                                        Fragment addProduct = new AddProduct();
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.mainLayout, addProduct);
+                                        fragmentTransaction.addToBackStack(null);
+                                        // Commit the transaction
+                                        fragmentTransaction.commit();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
                 })
         );
@@ -132,7 +168,7 @@ public class ProductFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Back",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"Back",Toast.LENGTH_LONG).show();
                 Fragment company = new CompanyFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -146,7 +182,7 @@ public class ProductFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Add",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"Add",Toast.LENGTH_LONG).show();
                 // Go to Child not Found Screen
                 Fragment addProduct = new AddProduct();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -199,9 +235,27 @@ public class ProductFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                   Toast.makeText(getContext(),holder.textProductName.getText().toString(),Toast.LENGTH_SHORT).show();
+                   //Toast.makeText(getContext(),holder.textProductName.getText().toString(),Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+        // add a row
+        public void insertAt(int position, Product product){
+            verticalList.add(position, product);
+            notifyItemInserted(position);
+        }
+        //removes the row
+        public void removeAt(int position) {
+            if(!verticalList.isEmpty()) {
+                verticalList.remove(position);
+                //dao.removeCompany(position);   // delete should be callled in here?????????????
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, verticalList.size());
+            }
+        }
+        public void insert(Product product){
+            verticalList.add(product);
+            notifyDataSetChanged();
         }
 
         @Override

@@ -17,20 +17,23 @@ import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import static io.tutorial.turntotech.infoOrganizerSample.StartActivity.dao;
+
 
 public class WebFragment extends Fragment {
     private WebView mWebView;
     ImageButton backButton;
+    ImageButton addButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-       View v = inflater.inflate(R.layout.fragment_web, container, false);
+        View v = inflater.inflate(R.layout.fragment_web, container, false);
 
         int companyNo = ((StartActivity) getActivity()).getCurrentCompanyNo();
         int productNo = ((StartActivity) getActivity()).getCurrentProductNo();
-        String url = DAO.getInstance(getContext()).getDAOProductList(companyNo).get(productNo).getProduct_URL();
+        String url = dao.getDAOProductList(companyNo).get(productNo).getProduct_URL();
 
         mWebView = (WebView) v.findViewById(R.id.webview);
         mWebView.loadUrl(url);
@@ -47,12 +50,14 @@ public class WebFragment extends Fragment {
         ActionBar actionBar = activity.getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.toolbar);
+        addButton = (ImageButton)activity.findViewById(R.id.imageButton2);
+        addButton.setVisibility(View.INVISIBLE);
         backButton = (ImageButton)activity.findViewById(R.id.imageButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Back",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"Back",Toast.LENGTH_LONG).show();
                 Fragment product = new ProductFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

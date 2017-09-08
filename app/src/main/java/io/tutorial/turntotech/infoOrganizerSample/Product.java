@@ -1,46 +1,56 @@
 package io.tutorial.turntotech.infoOrganizerSample;
 
-/**
- * Created by Webster on 8/31/2017.
- */
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+/**
+ * Created by Abdulaziz on 8/31/2017.
+ */
+@DatabaseTable(tableName = "Product")
 public class Product {
 
+    @DatabaseField(generatedId = true)
     private int id;
-    private int company_id;
+    //@DatabaseField // this has to specify the foriegn column name
+    //private int company_id;
+    @DatabaseField
     private String product_name;
+    @DatabaseField
     private String product_URL;
+    @DatabaseField
     private String logo_URL;
+    @DatabaseField(columnName = "company", foreign = true, foreignAutoRefresh = true)
+    private Company company;
 
-    public Product(int id, int company_id, String product_name, String product_URL, String logo_URL) {
-        this.id = id;
-        this.company_id = company_id;
-        this.product_name = product_name;
-        this.product_URL = product_URL;
-        this.logo_URL = logo_URL;
-    }
-
+    // ------------------- Constructors ----------------
     public Product(){
-        this.id = 0;
-        this.company_id = 0;
-        this.product_name = "";
-        this.product_URL = "";
-        this.logo_URL = "";
+
     }
-    public Product( String product_name, String product_URL, String logo_URL) {
-        this.id = 0;
-        this.company_id = 0;
+    public Product(int id, String product_name, String product_URL, String logo_URL, Company company) {
+        //this.id = id;
+        //this.company_id = company_id;
         this.product_name = product_name;
         this.product_URL = product_URL;
         this.logo_URL = logo_URL;
+        this.company = company;
     }
 
-    public Product( String product_name, String logo_URL) {
-        this.id = 0;
-        this.company_id = 0;
+    public Product( String product_name, String product_URL, String logo_URL, Company company) {
+        //this.id = 0;
+        //this.company_id = 0;
+        this.product_name = product_name;
+        this.product_URL = product_URL;
+        this.logo_URL = logo_URL;
+        this.company = company;
+    }
+
+    public Product( String product_name, String logo_URL, Company company) {
+       // this.id = 0;
+        //this.company_id = 0;
         this.product_name = product_name;
         this.product_URL = "";
         this.logo_URL = logo_URL;
+        this.company = company;
     }
 
     public int getId() {
@@ -51,13 +61,21 @@ public class Product {
         this.id = id;
     }
 
-    public int getCompany_id() {
-        return company_id;
+    public void setCompany(Company c){
+        company = c;
     }
 
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
+    public Company getCompany(){
+        return company;
     }
+
+//    public int getCompany_id() {
+//        return company_id;
+//    }
+
+//    public void setCompany_id(int company_id) {
+//        this.company_id = company_id;
+//    }
 
     public String getProduct_name() {
         return product_name;

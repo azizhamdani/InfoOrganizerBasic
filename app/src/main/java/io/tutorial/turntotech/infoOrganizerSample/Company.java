@@ -1,64 +1,65 @@
 package io.tutorial.turntotech.infoOrganizerSample;
 
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.ArrayList;
 
 /**
- * Created by Webster on 8/31/2017.
+ * Created by Abdulaziz on 8/31/2017.
  */
-
+@DatabaseTable(tableName = "Company")
 public class Company {
 
+    @DatabaseField(generatedId = true)
     private int id;
+    @DatabaseField
     private String company_name;
+    @DatabaseField
     private String logoURL;
+    @DatabaseField
     private String stock_ticker;
+    @DatabaseField
     private String stock_price;
-    private ArrayList<Product> productArrayList;
+    @ForeignCollectionField(columnName = "products", eager = true)
+    private ForeignCollection<Product> products;
+
+    // ------------- Constructors -----------------------
+    public Company() {
+    }
 
     public Company(int id, String company_name, String logoURL, String stock_ticker, String stock_price) {
-        this.id = id;
+       // this.id = id;
         this.company_name = company_name;
         this.logoURL = logoURL;
         this.stock_ticker = stock_ticker;
         this.stock_price = stock_price;
-        productArrayList = new ArrayList<>();
     }
 
-
-
     public Company(String company_name, String logoURL, String stock_ticker) {
-        this.id = 0;
+        //this.id = 0;
         this.company_name = company_name;
         this.logoURL = logoURL;
         this.stock_ticker = stock_ticker;
         this.stock_price = "N/A";
-        productArrayList = new ArrayList<>();
     }
 
-
     public Company(String company_name, String logoURL, String stock_ticker, String stock_price) {
-        this.id = 0;
+        //this.id = 0;
         this.company_name = company_name;
         this.logoURL = logoURL;
         this.stock_ticker = stock_ticker;
         this.stock_price = stock_price;
-        productArrayList = new ArrayList<>();
-    }
-
-    // -------------- add a product -----------------
-    public void addProduct( Product product){
-        productArrayList.add(product);
     }
 
     // -----------get product List of company ---------
-    public ArrayList<Product> getProductList(){
-        if(productArrayList.isEmpty()){
-            return null;
-        }
-        else{
-            return productArrayList;
-        }
-
+    public ForeignCollection<Product> getProductList(){
+            return products;
+    }
+    public void setProductList(ForeignCollection<Product> products){
+        this.products = products;
     }
 
     //------------ get ID -----------------------

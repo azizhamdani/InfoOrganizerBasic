@@ -45,10 +45,8 @@ public class CompanyFragment extends Fragment implements CallBack {
     NetworkManager networkManager;
 
     //--------
-    //private ArrayList<Company> companies;
+    private ArrayList<Company> companies = dao.getCompanies();
     //private DAO dao;
-
-
 
     @Nullable
     @Override
@@ -58,37 +56,18 @@ public class CompanyFragment extends Fragment implements CallBack {
 
 
         recycler_view= (RecyclerView) view.findViewById(R.id.vertical_recycler_view);
+        //recyclerAdapter=new VerticalAdapter(dao.getCompanies());
+        recyclerAdapter=new VerticalAdapter(companies);
 
         networkManager = NetworkManager.getSharedInstance();
         // create the URL
         // check if Array List is null
         String url = getURL();
 
-        Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
         networkManager.downloadData(getContext(),
                 "https://download.finance.yahoo.com/d/quotes.csv?s="+(url)+"&f=nl1",this);
-        assignTickers(csv);
 
-        //https://download.finance.yahoo.com/d/quotes.csv?s=AAPL+GOOG+MSFT&f=nl1
-
-        //listOfComany=new ArrayList<String>();
-        //companies = new ArrayList<Company>();
-        //dao = new DAO();
-
-        /*
-        companies.add(new Company("Apple", "apple company", 1000));
-        companies.add(new Company("Samsung", "Samsung company", 1000));
-        companies.add(new Company("Motorola", "Motorola company", 1000));
-        companies.add(new Company("Microsoft", "Microsoft company", 1000));
-
-        listOfComany.add("Apple");
-        listOfComany.add("Samsung");
-        listOfComany.add("Motorola");
-        listOfComany.add("Microsoft");
-        */
-        //recyclerAdapter=new VerticalAdapter(listOfComany);
-        //recyclerAdapter=new VerticalAdapter(DAO.getInstance().getCompanies());
-        recyclerAdapter=new VerticalAdapter(dao.getCompanies());
 
         LinearLayoutManager layoutmanager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -101,9 +80,8 @@ public class CompanyFragment extends Fragment implements CallBack {
                 new RecyclerItemClickListener(getContext(), recycler_view ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         //Toast.makeText(getContext(),listOfCompany.get(position),Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(),
-                                dao.getDAOCompany(position).getCompany_name(),
-                                Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), dao.getDAOCompany(position).getCompany_name(),
+                         //       Toast.LENGTH_SHORT).show();
 
 
                         ((StartActivity) getActivity()).setCurrentCompanyNo(position);
@@ -114,8 +92,6 @@ public class CompanyFragment extends Fragment implements CallBack {
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.mainLayout, productFragment);
                         fragmentTransaction.addToBackStack(null);
-
-                        // Commit the transaction
                         fragmentTransaction.commit();
 
                     }
@@ -131,7 +107,9 @@ public class CompanyFragment extends Fragment implements CallBack {
                                 .setCancelable(false)
                                 .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        dao.removeCompany(position);
+                                        Company companyToRemove = dao.getDAOCompany(position);
+                                        dao.removeCompany(companyToRemove);
+                                        recyclerAdapter.removeAt(position);
                                         recyclerAdapter.notifyDataSetChanged();
                                     }
                                 })
@@ -173,7 +151,7 @@ public class CompanyFragment extends Fragment implements CallBack {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Add",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"Add",Toast.LENGTH_LONG).show();
                 // Go to Child not Found Screen
                 Fragment addCompany = new AddCompany();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -214,14 +192,16 @@ public class CompanyFragment extends Fragment implements CallBack {
             for(int i = 1; i < arrSize; i++){
                 String[] temp_arr = lines[i].split(",");
                 String temp = temp_arr[1];
-                dao.getCompanies().get(i-1).setStock_price(temp);
+                // I had to store the arrayList for the recycler view
+                // companiesArrayList holds the current viewd items
+                Company tempCompany = companies.get(i-1);
+                companies.get(i-1).setStock_price(temp);
+                tempCompany.setStock_price(temp);
+                dao.updateCompany(tempCompany);
                 recyclerAdapter.notifyDataSetChanged();
             }
         }
-        Toast.makeText(getContext(), resultStr, Toast.LENGTH_LONG).show();
-
-    }
-    public void assignTickers(String result){
+        //Toast.makeText(getContext(), resultStr, Toast.LENGTH_LONG).show();
 
     }
 
@@ -245,8 +225,6 @@ public class CompanyFragment extends Fragment implements CallBack {
 
             }
         }
-
-
         /*
         public VerticalAdapter(List<String> verticalList) {
             this.verticalList = verticalList;
@@ -292,6 +270,7 @@ public class CompanyFragment extends Fragment implements CallBack {
         public void removeAt(int position) {
             if(!companyList.isEmpty()) {
                 companyList.remove(position);
+                //dao.removeCompany(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, companyList.size());
             }

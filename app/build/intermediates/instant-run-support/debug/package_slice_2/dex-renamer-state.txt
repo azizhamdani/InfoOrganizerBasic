@@ -1,4 +1,4 @@
-#Tue Sep 05 11:56:21 EDT 2017
+#Thu Sep 07 16:33:31 EDT 2017
 base.0=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2
 renamed.0=classes.dex
 file.0=C\:\\Users\\Webster\\AndroidStudioProjects\\InfoOrganizerBasic\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2\\classes.dex

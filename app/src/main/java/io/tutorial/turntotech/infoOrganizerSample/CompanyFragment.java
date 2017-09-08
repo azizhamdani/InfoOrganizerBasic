@@ -69,8 +69,7 @@ public class CompanyFragment extends Fragment implements CallBack {
                 "https://download.finance.yahoo.com/d/quotes.csv?s="+(url)+"&f=nl1",this);
 
 
-        LinearLayoutManager layoutmanager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recycler_view.setLayoutManager(layoutmanager);
 
         recycler_view.setAdapter(recyclerAdapter);
